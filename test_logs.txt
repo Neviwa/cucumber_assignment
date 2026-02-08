@@ -1,0 +1,115 @@
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------< org.example:cucumber_assignment >-------------------
+[INFO] Building cucumber_assignment 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ cucumber_assignment ---
+[INFO] Deleting C:\Users\natal\IdeaProjects\Cucumber_assignment\target
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ cucumber_assignment ---
+[INFO] skip non existing resourceDirectory C:\Users\natal\IdeaProjects\Cucumber_assignment\src\main\resources
+[INFO]
+[INFO] --- compiler:3.13.0:compile (default-compile) @ cucumber_assignment ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 17] to target\classes
+[WARNING] location of system modules is not set in conjunction with -source 17
+  not setting the location of system modules may lead to class files that cannot run on JDK 17
+    --release 17 is recommended instead of -source 17 -target 17 because it sets the location of system modules automatically
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ cucumber_assignment ---
+[INFO] Copying 3 resources from src\test\resources to target\test-classes
+[INFO]
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ cucumber_assignment ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug target 17] to target\test-classes
+[WARNING] location of system modules is not set in conjunction with -source 17
+  not setting the location of system modules may lead to class files that cannot run on JDK 17
+    --release 17 is recommended instead of -source 17 -target 17 because it sets the location of system modules automatically
+[INFO] /C:/Users/natal/IdeaProjects/Cucumber_assignment/src/test/java/pl/automation/steps/TestRunner.java: C:\Users\natal\IdeaProjects\Cucumber_assignment\src\test\java\pl\automation\steps\TestRunner.java uses or overrides a deprecated API.
+[INFO] /C:/Users/natal/IdeaProjects/Cucumber_assignment/src/test/java/pl/automation/steps/TestRunner.java: Recompile with -Xlint:deprecation for details.
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ cucumber_assignment ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junit4.JUnit4Provider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running pl.automation.steps.TestRunner
+
+@Smoke
+Scenario Outline: Retrieve a joke by specific id # src/test/resources/features/jokes_by_id.feature:12
+  ? Given the joke api is up and running         # pl.automation.steps.JokeSteps.apiCheck()
+  ? When I request a joke with id 30             # pl.automation.steps.JokeSteps.getJokeById(int)
+  ? Then the response status code should be 200  # pl.automation.steps.JokeSteps.verifyStatus(int)
+  ? And the joke id should be 30                 # pl.automation.steps.JokeSteps.verifyId(int)
+
+@Smoke
+Scenario Outline: Retrieve a joke by specific id # src/test/resources/features/jokes_by_id.feature:13
+  ? Given the joke api is up and running         # pl.automation.steps.JokeSteps.apiCheck()
+  ? When I request a joke with id 120            # pl.automation.steps.JokeSteps.getJokeById(int)
+  ? Then the response status code should be 200  # pl.automation.steps.JokeSteps.verifyStatus(int)
+  ? And the joke id should be 120                # pl.automation.steps.JokeSteps.verifyId(int)
+
+@Smoke
+Scenario Outline: Retrieve a joke by specific id # src/test/resources/features/jokes_by_id.feature:14
+  ? Given the joke api is up and running         # pl.automation.steps.JokeSteps.apiCheck()
+  ? When I request a joke with id 5              # pl.automation.steps.JokeSteps.getJokeById(int)
+  ? Then the response status code should be 200  # pl.automation.steps.JokeSteps.verifyStatus(int)
+  ? And the joke id should be 5                  # pl.automation.steps.JokeSteps.verifyId(int)
+
+@Smoke @Regression
+Scenario Outline: Retrieve chosen amount of jokes and verify it # src/test/resources/features/number_of_jokes.feature:12
+  ? Given the joke api is up and running                        # pl.automation.steps.JokeSteps.apiCheck()
+  ? When I request 3 jokes                                      # pl.automation.steps.JokeSteps.getNumberOfJokes(int)
+  ? Then the response status code should be 200                 # pl.automation.steps.JokeSteps.verifyStatus(int)
+  ? And there should be exactly 3 fields                        # pl.automation.steps.JokeSteps.verifyNumberOfFields(int)
+
+@Smoke @Regression
+Scenario Outline: Retrieve chosen amount of jokes and verify it # src/test/resources/features/number_of_jokes.feature:13
+  ? Given the joke api is up and running                        # pl.automation.steps.JokeSteps.apiCheck()
+  ? When I request 58 jokes                                     # pl.automation.steps.JokeSteps.getNumberOfJokes(int)
+  ? Then the response status code should be 200                 # pl.automation.steps.JokeSteps.verifyStatus(int)
+  ? And there should be exactly 58 fields                       # pl.automation.steps.JokeSteps.verifyNumberOfFields(int)
+
+@Smoke @Regression
+Scenario Outline: Retrieve chosen amount of jokes and verify it # src/test/resources/features/number_of_jokes.feature:14
+  ? Given the joke api is up and running                        # pl.automation.steps.JokeSteps.apiCheck()
+  ? When I request 201 jokes                                    # pl.automation.steps.JokeSteps.getNumberOfJokes(int)
+  ? Then the response status code should be 200                 # pl.automation.steps.JokeSteps.verifyStatus(int)
+  ? And there should be exactly 201 fields                      # pl.automation.steps.JokeSteps.verifyNumberOfFields(int)
+
+@Regression
+Scenario: Retrieve a random joke and verify response structure # src/test/resources/features/random_joke.feature:6
+  ? Given the joke api is up and running                       # pl.automation.steps.JokeSteps.apiCheck()
+  ? When I request a random joke                               # pl.automation.steps.JokeSteps.getRandomJoke()
+  ? Then the response status code should be 200                # pl.automation.steps.JokeSteps.verifyStatus(int)
+  ? And the joke should have "setup" and "punchline" fields    # pl.automation.steps.JokeSteps.verifyFields(java.lang.String,java.lang.String)
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.875 s -- in pl.automation.steps.TestRunner
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.282 s
+[INFO] Finished at: 2026-02-08T21:02:42+01:00
+[INFO] ------------------------------------------------------------------------
+PS C:\Users\natal\IdeaProjects\Cucumber_assignment> git add .
+PS C:\Users\natal\IdeaProjects\Cucumber_assignment> git commit -m "Adding new number_of_jokes.feature test and new steps for it"
+[main 9e5f637] Adding new number_of_jokes.feature test and new steps for it
+ 2 files changed, 24 insertions(+)
+ create mode 100644 src/test/resources/features/number_of_jokes.feature
+PS C:\Users\natal\IdeaProjects\Cucumber_assignment> git push
+Enumerating objects: 22, done.
+Counting objects: 100% (22/22), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (12/12), 1.21 KiB | 622.00 KiB/s, done.
+Total 12 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/Neviwa/cucumber_assignment.git
+   1c5c581..9e5f637  main -> main
