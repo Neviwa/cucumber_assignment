@@ -15,6 +15,11 @@ public class JokeSteps {
         given().get(ApiConfig.BASE_URL + "/random_joke").then().statusCode(200);
     }
 
+    @When("I request {int} jokes")
+    public void getNumberOfJokes(int number){
+        response = get(ApiConfig.BASE_URL + "/jokes/random/" + number);
+    }
+
     @When("I request a random joke")
     public void getRandomJoke(){
         response = get(ApiConfig.BASE_URL + "/random_joke");
@@ -38,6 +43,11 @@ public class JokeSteps {
     @Then("the joke should have {string} and {string} fields")
     public void verifyFields(String field1, String field2){
         response.then().body("$", hasKey(field1)).body("$", hasKey(field2));
+    }
+
+    @Then("there should be exactly {int} fields")
+    public void verifyNumberOfFields(int number){
+        response.then().body("$.size()", is(number));
     }
 
 
