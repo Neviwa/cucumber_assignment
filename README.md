@@ -28,5 +28,5 @@ To run only Cucumber tests:
 .\mvnw -Dtest=TestRunner test
 ```
 ## AI disclosure
-* AI was used to help in the correct configuration of the TestRunner class
-* AI provided guidance on adding repository to existing maven project
+* The TestRunner class was generated with the help of AI because I did not yet have knowledge of how it should be structured. 
+* AI was also used to provide guidance on how to add a repository to an existing Maven project in order to set up the framework more efficiently. In this case, AI did not generate any code 6but offered instructions that helped me start the project faster
